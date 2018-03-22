@@ -1,0 +1,9 @@
+"","Sex","Age_group","Survivors","Total","Survival_rate"
+"1","female","Adults (25-59 years)",108,140,0.771428571428571
+"2","female","Children (0-14 years)",24,38,0.631578947368421
+"3","female","Seniors (60 years and over)",4,4,1
+"4","female","Youth (15-24 years)",61,79,0.772151898734177
+"5","male","Adults (25-59 years)",57,271,0.210332103321033
+"6","male","Children (0-14 years)",21,39,0.538461538461538
+"7","male","Seniors (60 years and over)",3,22,0.136363636363636
+"8","male","Youth (15-24 years)",12,121,0.0991735537190083
