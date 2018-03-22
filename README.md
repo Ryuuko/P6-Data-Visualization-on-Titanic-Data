@@ -2,7 +2,8 @@
 Udacity's Data Analyst Project
 
 
-* Summary 
+* Summary
+
 This project aims at data visualisation of selected dataset. I choose the dataset of Titanic Data from Kaggle ( https://www.kaggle.com/c/titanic/data)
 and its includes variables like the ticket class, sex	and ages of passengers in the famous accident of RMS Titanic On April 15, 1912. This dataset has
 11 variables/features in 891 passengers.
