@@ -6,10 +6,8 @@
     <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/custom.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="css/custom.css" rel="stylesheet"/>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link href="css/animate.css" rel="stylesheet"/>
@@ -144,7 +142,7 @@
             svg.selectAll('*').remove();
 
 
-            d3.csv("Mydata.csv", function(data) {
+            d3.csv("MyData.csv", function(data) {
 
             var myChart = new dimple.chart(svg, data);
             myChart.setBounds(70, 60, 1000, 500);
