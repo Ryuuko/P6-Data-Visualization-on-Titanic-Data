@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,13 +19,13 @@
 
 
     button {
+        color: white;
         border: none;
         border-radius: 3px;
-        background-color: #2196F3;
+        background-color: #be2edd;
         box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.33);
         margin-right: 10px;
         padding: 3px 10px;
-
     }
 
 
@@ -47,60 +47,98 @@
 
     }
 
-    .animated.fadeIn.storybutton{
+    .animated.fadeIn.storybutton {
         position:absolute;
         top: 350px;
-        left: 1180px;
+        left: 1200px;
         margin: auto; 
 
     }  
 
-    .animated.fadeIn.explore1{
+    .animated.fadeIn.storybutton2 {
         position:absolute;
-        top: 280px;
+        top: 350px;
+        left: 1100px;
+        margin: auto; 
+
+    }  
+
+    .animated.fadeIn.explore0 {
+        position:absolute;
+        top: 175px;
         left: 1181px;
     }
 
-    .animated.fadeIn.explore2{
+    .animated.fadeIn.explore1 {
+        position:absolute;
+        top: 280px;
+        left: 1145px;
+    }
+
+    .animated.fadeIn.explore2 {
         position:absolute;
         top: 330px;
-        left: 1190px;
+        left: 1153px;
     }
-    .animated.fadeIn.explore3{
+    .animated.fadeIn.explore3 {
         position:absolute;
         top: 380px;
-        left: 1180px;
+        left: 1145px;
     }
 
+    h1{
+       color: #be2edd;
+    }
 
+    .leading{
+        color: #be2edd;
+        position:absolute;
+        top: 65px;
+        left: 1100px;
+    }
 
 
 </style>
 </head>
 <body>
+
     <div class="animated fadeIn title", id="cover">
         <h1>"Women and children first"</h1>
 
-        <h4 id="text1">The rescue principle in sinking of RMS Titanic<br><br></h4>
+        <h4 id="text1"><br>The rescue rule in sinking of RMS Titanic<br><br></h4>
 
         <button id="next0-btn">Next</button>
     </div>
-    <div id="container">
-<!--         <section class="os-animation" data-os-animation="fadeIn" data-os-animation-delay="3s", id="animation"> -->
-        <section, id="intro">
-            <button class="animated fadeIn storybutton", style="display: none", id="next-btn">Next</button>
-            <p class="animated fadeIn", style="display: none", id="text2"><br>Among the passengers on Titanic, the number of males was always larger than
+
+    <div style="display: none", class="animated fadeIn", id="page1">
+            <h3 class="leading">To prove the rule, we first observe the sex distribution on Titanic...</h3>
+            <button class="animated fadeIn storybutton", id="next1-btn">Next</button>
+            <button class="animated fadeIn storybutton2", id="prev1-btn">Previous</button>
+            <p>Among the passengers on Titanic, the number of males was always larger than
     the number of females in every age category.</p>
-            <p class="animated fadeIn", style="display: none", id="text3"><br><br>But there were always more females<br>being rescued.</p>
-            <p class="animated fadeIn", style="display: none", id="text4"><br><br>Still, male children were more likely to survive comparing to other males.</p>
-        </section>
 
     </div>
 
+    <div style="display: none", class="animated fadeIn", id="page2">
+            <h3 class="leading">...which is different to<br>the survivors distribution.</h3>
+            <button class="animated fadeIn storybutton", id="next2-btn">Next</button>
+            <button class="animated fadeIn storybutton2", id="prev2-btn">Previous</button>
+            <p>There were always more females<br>being rescued.</p>
+
+    </div>
+
+    <div style="display: none", class="animated fadeIn", id="page3">
+            <h3 class="leading">Second part of the rule: Were more children being saved, even they were male?</h3>
+            <button class="animated fadeIn storybutton2", id="prev3-btn">Previous</button>
+            <button class="animated fadeIn storybutton", id="next3-btn">Explore</button>
+            <p>Still, male children were more likely to survive comparing to other males.</p>
+    </div>
+
     <div style="display: none", id="Explore">
-            <button class="animated fadeIn explore1", id="Total-btn">Total Number</button>
-            <button class="animated fadeIn explore2", id="Survivors-btn">Survivors</button>
-            <button class="animated fadeIn explore3", id="Survival_rate-btn">Survival Rate</button>
+            <button class="animated fadeIn explore0", id="prev4-btn">Previous</button>
+            <button class="animated fadeIn explore1", id="Total-btn">Number of Passengers</button>
+            <button class="animated fadeIn explore2", id="Survivors-btn">Number of Survivors</button>
+            <button class="animated fadeIn explore3", id="Survival_rate-btn">Percentage of Survivors</button>
     </div>
 
 
@@ -118,13 +156,90 @@
                     .append('g')
                     .attr('class','chart');
 
-        d3.select('#next0-btn').on('click', function() {
+        //next button's function
+
+            d3.select('#next0-btn').on('click', function() {
                 // trigger the remove function
                 var cover = document.getElementById('cover')
                 cover.style.display = "none" 
+                var page1 = document.getElementById('page1')
+                page1.style.display = "initial" 
                 updateChart('Total') 
         }) 
-        
+
+                d3.select('#next1-btn').on('click', function() {
+                // trigger the remove function
+                var page1 = document.getElementById('page1')
+                page1.style.display = "none" 
+                var page2 = document.getElementById('page2')
+                page2.style.display = "initial" 
+                updateChart('Survivors') 
+        }) 
+
+
+                d3.select('#next2-btn').on('click', function() {
+                // trigger the remove function
+                var page2 = document.getElementById('page2')
+                page2.style.display = "none" 
+                var page3 = document.getElementById('page3')
+                page3.style.display = "initial"                 
+                updateChart('Survival_rate') 
+        }) 
+
+                d3.select('#next3-btn').on('click', function() {
+                // trigger the remove function
+                var page3 = document.getElementById('page3')
+                page3.style.display = "none" 
+                var explore = document.getElementById('Explore')
+                explore.style.display = "initial"   
+                svg.selectAll('*').remove();              
+        }) 
+
+        // prev buttons in every pages
+
+
+                d3.select('#prev1-btn').on('click', function() {
+                // trigger the remove function
+                var page1 = document.getElementById('page1')
+                page1.style.display = "none" 
+                var cover = document.getElementById('cover')
+                cover.style.display = "initial" 
+                svg.selectAll('*').remove();  
+        }) 
+
+
+                d3.select('#prev2-btn').on('click', function() {
+                // trigger the remove function
+                var page1 = document.getElementById('page1')
+                page1.style.display = "initial"   
+                var page2 = document.getElementById('page2')
+                page2.style.display = "none" 
+              
+                updateChart('Total') 
+        }) 
+
+                d3.select('#prev3-btn').on('click', function() {
+                // trigger the remove function
+                var page2 = document.getElementById('page2')
+                page2.style.display = "initial"   
+                var page3 = document.getElementById('page3')
+                page3.style.display = "none" 
+              
+                updateChart('Survivors') 
+     
+        }) 
+
+                d3.select('#prev4-btn').on('click', function() {
+                // trigger the remove function
+                var page3 = document.getElementById('page3')
+                page3.style.display = "initial"   
+                var explore = document.getElementById('Explore')
+                explore.style.display = "none" 
+              
+                updateChart('Survival_rate') 
+     
+        }) 
+       
         d3.select('#Total-btn').on('click', function(){
                 updateChart('Total');
         })
@@ -138,7 +253,7 @@
         })
 
         function updateChart(yAxis) {
-        // 每次清除 svg 画布
+        // clean svg.element each time
             svg.selectAll('*').remove();
 
 
@@ -146,6 +261,11 @@
 
             var myChart = new dimple.chart(svg, data);
             myChart.setBounds(70, 60, 1000, 500);
+            //change the color, not to have conflict with the button color
+            myChart.defaultColors = [
+              new dimple.color("#c7ecee"),
+              new dimple.color("#ff7979") 
+          ];
             var x = myChart.addCategoryAxis("x", ["Age_group", "Sex"]);
 
             x.addOrderRule(["Children (0-14 years)",
@@ -155,73 +275,43 @@
             x.title = " Age Categories";
             x.addGroupOrderRule(["male", "female"])
             var y = myChart.addMeasureAxis("y", yAxis);
+            svg
 
             if (yAxis === "Total") {
                 y.title = "Number of Passengers";
-                if (document.getElementById('intro') != null){
-
-                    var text1 = document.getElementById('text1') ;
-                    text1.style.display = "none" //not to display the first text
-                    var text2 = document.getElementById('text2') ;
-                    text2.style.display = "initial" // back to the normal display
-
-                    var intro = document.getElementById('next-btn')
-                    intro.style.display = "initial" 
-                    d3.select('#next-btn').on('click', function() {
-                            // this.style.display = "none"; //not to display the first button
-                            updateChart('Survivors')
-                            }) 
-                }
-
-
+                svg.append("text")
+                   .attr("x", 400)
+                   .attr("y", 30)
+                   .style("font-weight", "bold")
+                   .style("font-size", "large")
+                   .style("font-family", "Times New Roman")
+                   .text("Number of Passengers by Ages and Sex");
             } else if (yAxis === "Survivors") {
-
-
                 y.title = "Number of Survivors";
-                    if (document.getElementById('intro') != null) {  
-
-                        var text2 = document.getElementById('text2') ;
-                        text2.style.display = "none" //not to display the first text
-                        var text3 = document.getElementById('text3') ;
-                        text3.style.display = "initial" 
-
-                        d3.select('#next-btn').on('click', function() { 
-                                updateChart('Survival_rate');
-                                })}
-
+                svg.append("text")
+                   .attr("x", 400)
+                   .attr("y", 30)
+                   .style("font-weight", "bold")
+                   .style("font-size", "large")
+                   .style("font-family", "Times New Roman")
+                   .text("Number of Survivors by Ages and Sex");                
             } else if (yAxis === "Survival_rate") {
-
                 y.title = "Percentage of Survivors";
                 y.tickFormat = "%";
-                if (document.getElementById('intro') != null) {
-                    
-                    var text3 = document.getElementById('text3') ;
-                    text3.style.display = "none" //not to display the first text
-                    var text4 = document.getElementById('text4') ;
-                    text4.style.display = "initial" 
-
-                    document.getElementById('next-btn').innerHTML  = "Explore";
-
-                    d3.select('#next-btn').on('click', function() {
-                        var text4 = document.getElementById('text4') ;
-                        text4.style.display = "none"
-                        var elem = document.getElementById('intro');
-                        elem.parentNode.removeChild(elem);//remove all the previous buttons and text
-
-                        updateChart('Total'); //initialization
-
-                        var elem = document.getElementById("Explore");
-                        elem.style.display = "initial" 
-
-                            })
-                    }
-                }                       
+                svg.append("text")
+                   .attr("x", 400)
+                   .attr("y", 30)
+                   .style("font-weight", "bold")
+                   .style("font-size", "large")
+                   .style("font-family", "Times New Roman")
+                   .text("Percentage of Survivors by Ages and Sex");                
+            }                       
 
 
             s = myChart.addSeries("Sex", dimple.plot.bar);
             s.addOrderRule("Sex")
             myChart.addLegend(580, 22, 510, 20, "right");
-            myChart.draw(800);
+            myChart.draw(1000);
             });
         } 
   </script>
